@@ -1,0 +1,28 @@
+{
+  "name": "spotify-recommend-2",
+  "version": "0.0.0",
+  "description": "Spotify artist recommendation app: demo project for Thinkful Node.js course",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JMHill/spotify-recommend-2.git"
+  },
+  "keywords": [
+    "spotify",
+    "artist",
+    "recommend"
+  ],
+  "author": "Justin M. Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JMHill/spotify-recommend-2/issues"
+  },
+  "homepage": "https://github.com/JMHill/spotify-recommend-2#readme",
+  "dependencies": {
+    "express": "^4.12.4",
+    "unirest": "^0.4.2"
+  }
+}

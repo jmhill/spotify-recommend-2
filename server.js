@@ -1,19 +1,9 @@
 var express = require('express');
-var unirest = require('unirest');
-var events = require('events');
+var router = express.Router();
+var getFromApi = require('./services/getFromApi');
 
 var app = express()
 app.use(express.static('public'));
-
-var getFromApi = function (endpoint, args) {
-	var emitter = new events.EventEmitter();
-	unirest.get('https://api.spotify.com/v1/' + endpoint)
-		.qs(args)
-		.end(function(response){
-			emitter.emit('end', response.body);
-		});
-	return emitter;
-};
 
 app.get('/search/:name', function(req, res) {
 	var searchReq = getFromApi('search', {
@@ -22,9 +12,20 @@ app.get('/search/:name', function(req, res) {
 		type: 'artist'
 	});
 
+
 	searchReq.on('end', function(item) {
 		var artist = item.artists.items[0];
-		res.json(artist);
+		var relatedReq = getFromApi('artists/' + artist.id + '/related-artists');
+
+		relatedReq.on('end', function(list) {
+			artist.related = list.artists;
+			res.json(artist);
+		});
+
+		relatedReq.on('error', function() {
+			res.sendStatus(404);
+		});
+
 	});
 
 	searchReq.on('error', function() {

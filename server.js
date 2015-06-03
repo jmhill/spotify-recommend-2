@@ -15,17 +15,20 @@ app.get('/search/:name', function(req, res) {
 
 	searchReq.on('end', function(item) {
 		var artist = item.artists.items[0];
-		var relatedReq = getFromApi('artists/' + artist.id + '/related-artists');
 
-		relatedReq.on('end', function(list) {
-			artist.related = list.artists;
+		if (artist) {
+			var relatedReq = getFromApi('artists/' + artist.id + '/related-artists');
+			relatedReq.on('end', function(list) {
+				artist.related = list.artists;
+				res.json(artist);
+			});
+			relatedReq.on('error', function() {
+				res.sendStatus(404);
+			});
+		} else {
+			var artist = { name: 'No matching artist found!'};
 			res.json(artist);
-		});
-
-		relatedReq.on('error', function() {
-			res.sendStatus(404);
-		});
-
+		}
 	});
 
 	searchReq.on('error', function() {

@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express()
+var app = express();
 var getFromApi = require('./services/getFromApi');
 
 app.use(express.static('public'));
@@ -12,7 +12,7 @@ app.get('/search/:name', function(req, res) {
 		type: 'artist'
 	});
 
-	// We have to wait for the initial Spotify artist search to finish before we 
+	// We have to wait for the initial Spotify artist search to finish before we
 	// start messing with the related artist info.
 	searchReq.on('end', function(item) {
 		// For simplicity's sake, we will just use the first artist found in the search results
@@ -38,10 +38,10 @@ app.get('/search/:name', function(req, res) {
 				artist.related.forEach(function(relatedArtist) {
 					// Each related artist will require an API call
 					var topTracksReq = getFromApi(
-						'artists/' + relatedArtist.id + '/top-tracks', 
+						'artists/' + relatedArtist.id + '/top-tracks',
 						{ country: 'US' }
 					);
-					// Once the track lookup API call is complete, we can attach those 
+					// Once the track lookup API call is complete, we can attach those
 					// tracks to the related artist object and check our lookup status.
 					topTracksReq.on('end', function(trackList) {
 						relatedArtist.tracks = trackList.tracks;
@@ -54,7 +54,7 @@ app.get('/search/:name', function(req, res) {
 					});
 				});
 			});
-			
+
 			relatedReq.on('error', function() {
 				res.sendStatus(404);
 			});
@@ -63,7 +63,7 @@ app.get('/search/:name', function(req, res) {
 			// (for example, if the user inputs gibberish)
 			// we return a placeholder artist object with a
 			// friendly error message in the name property.
-			var artist = { name: 'No matching artist found!'};
+			artist = { name: 'No matching artist found!'};
 			res.json(artist);
 		}
 	});

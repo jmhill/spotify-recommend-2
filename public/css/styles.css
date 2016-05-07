@@ -20,7 +20,7 @@ form {
     background-color: #575E68;
 }
 
-form.pure-form {
+.pure-form {
     margin-bottom: 0;
 }
 
@@ -44,23 +44,23 @@ h2 {
     margin: 0 0 5px 0;
 }
 
-div#result {
+#result {
     transition: opacity 1s;
 }
 
-div#result.transparent{
+.transparent{
     opacity : 0;
 }
 
-div.main {
+.main {
     padding: 60px;
 }
 
-div.main img {
+.main img {
     float: left;
 }
 
-div.main .artist {
+.main .artist {
     padding-left: 84px;
     padding: 0 20px 20px 84px;
     margin-bottom: 20px;

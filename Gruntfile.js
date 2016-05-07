@@ -59,15 +59,15 @@ module.exports = function(grunt) {
       }
     },
 
-    browserify: {
-      main: {
-        src: 'public/js/app.js',
-        dest: 'public/main.js'
-      },
-      options: {
-        transform: ['brfs']
-      }
-    },
+    // browserify: {
+    //   main: {
+    //     src: 'public/js/app.js',
+    //     dest: 'public/main.js'
+    //   },
+    //   options: {
+    //     transform: ['brfs']
+    //   }
+    // },
 
     'node-inspector': {
       debug: {
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-node-inspector');
 
   // Load Build Tasks
-  grunt.loadNpmTasks('grunt-browserify');
+  // grunt.loadNpmTasks('grunt-browserify');
 
   // Load Testing Tasks
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-csslint');
 
   // Register Tasks
-  grunt.registerTask('default', ['env:dev', 'lint', 'browserify', 'concurrent:dev']);
+  grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:dev']);
   grunt.registerTask('debug', ['env:dev', 'lint', 'concurrent:debug']);
   grunt.registerTask('test', ['env:test', 'mochaTest']);
   grunt.registerTask('lint', ['jshint', 'csslint']);

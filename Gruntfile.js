@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    // Default Configurations
+    // Dev Tool Configurations
     env: {
       dev: {
         NODE_ENV: 'development'
@@ -33,11 +33,11 @@ module.exports = function(grunt) {
 
     watch: {
       js: {
-        files: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/**/*.js'],
+        files: ['server.js', 'src/**/*.js'],
         tasks: ['jshint']
       },
       src: {
-        files: ['public/js/**/*.js', 'public/js/**/*.html'],
+        files: ['src/**/*.js'],
         tasks: ['browserify']
       },
       css: {
@@ -61,20 +61,23 @@ module.exports = function(grunt) {
       }
     },
 
-    // browserify: {
-    //   main: {
-    //     src: 'public/js/app.js',
-    //     dest: 'public/main.js'
-    //   },
-    //   options: {
-    //     transform: ['brfs']
-    //   }
-    // },
 
     'node-inspector': {
       debug: {
         options: {
           'web-port': 8989
+        }
+      }
+    },
+
+    // Build Configurations
+    browserify: {
+      dist: {
+        options: {
+          transform: ["babelify"]
+        },
+        files: {
+          "./public/js/app.js": ["./src/client/app.js"]
         }
       }
     },
@@ -90,7 +93,7 @@ module.exports = function(grunt) {
     // Linting Configurations
     jshint: {
       all: {
-        src: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/*.js']
+        src: ['server.js', 'src/**/*.js']
       }
     },
     csslint: {
@@ -102,8 +105,27 @@ module.exports = function(grunt) {
   });
 
   // Register Tasks
-  grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:dev']);
-  grunt.registerTask('debug', ['env:dev', 'lint', 'concurrent:debug']);
-  grunt.registerTask('test', ['env:test', 'mochaTest']);
-  grunt.registerTask('lint', ['jshint', 'csslint']);
+  grunt.registerTask('default', [
+    'env:dev',
+    'lint',
+    'browserify',
+    'concurrent:dev'
+  ]);
+
+  grunt.registerTask('debug', [
+    'env:dev',
+    'lint',
+    'browserify',
+    'concurrent:debug'
+  ]);
+
+  grunt.registerTask('test', [
+    'env:test',
+    'mochaTest'
+  ]);
+
+  grunt.registerTask('lint', [
+    'jshint',
+    'csslint'
+  ]);
 }

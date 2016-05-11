@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
+
   grunt.initConfig({
 
     // Default Configurations
@@ -98,23 +100,6 @@ module.exports = function(grunt) {
     }
 
   });
-
-  // Load Default Tasks
-  grunt.loadNpmTasks('grunt-env');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-node-inspector');
-
-  // Load Build Tasks
-  // grunt.loadNpmTasks('grunt-browserify');
-
-  // Load Testing Tasks
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  // Load Linting Tasks
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
 
   // Register Tasks
   grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:dev']);

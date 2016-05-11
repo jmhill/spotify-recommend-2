@@ -26,6 +26,7 @@
     "unirest": "^0.4.2"
   },
   "devDependencies": {
+    "babelify": "^7.3.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-concurrent": "^2.0.1",
@@ -35,6 +36,7 @@
     "grunt-env": "^0.4.4",
     "grunt-mocha-test": "^0.12.7",
     "grunt-node-inspector": "^0.4.1",
-    "grunt-nodemon": "^0.4.0"
+    "grunt-nodemon": "^0.4.0",
+    "load-grunt-tasks": "^3.5.0"
   }
 }

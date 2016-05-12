@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var getFromApi = require('./services/getFromApi');
+var getFromApi = require('./src/services/getFromApi');
 
 app.use(express.static('public'));
 

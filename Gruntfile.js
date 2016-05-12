@@ -1,7 +1,9 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
+
   grunt.initConfig({
 
-    // Default Configurations
+    // Dev Tool Configurations
     env: {
       dev: {
         NODE_ENV: 'development'
@@ -31,11 +33,11 @@ module.exports = function(grunt) {
 
     watch: {
       js: {
-        files: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/**/*.js'],
+        files: ['server.js', 'src/**/*.js'],
         tasks: ['jshint']
       },
       src: {
-        files: ['public/js/**/*.js', 'public/js/**/*.html'],
+        files: ['src/**/*.js'],
         tasks: ['browserify']
       },
       css: {
@@ -59,20 +61,23 @@ module.exports = function(grunt) {
       }
     },
 
-    // browserify: {
-    //   main: {
-    //     src: 'public/js/app.js',
-    //     dest: 'public/main.js'
-    //   },
-    //   options: {
-    //     transform: ['brfs']
-    //   }
-    // },
 
     'node-inspector': {
       debug: {
         options: {
           'web-port': 8989
+        }
+      }
+    },
+
+    // Build Configurations
+    browserify: {
+      dist: {
+        options: {
+          transform: ["babelify"]
+        },
+        files: {
+          "./public/js/app.js": ["./src/client/app.js"]
         }
       }
     },
@@ -88,7 +93,10 @@ module.exports = function(grunt) {
     // Linting Configurations
     jshint: {
       all: {
-        src: ['server.js', 'config/**/*.js', 'app/**/*.js', 'public/js/*.js']
+        src: ['server.js'],
+        options: {
+          esnext: true
+        }
       }
     },
     csslint: {
@@ -99,26 +107,28 @@ module.exports = function(grunt) {
 
   });
 
-  // Load Default Tasks
-  grunt.loadNpmTasks('grunt-env');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-node-inspector');
-
-  // Load Build Tasks
-  // grunt.loadNpmTasks('grunt-browserify');
-
-  // Load Testing Tasks
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  // Load Linting Tasks
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-
   // Register Tasks
-  grunt.registerTask('default', ['env:dev', 'lint', 'concurrent:dev']);
-  grunt.registerTask('debug', ['env:dev', 'lint', 'concurrent:debug']);
-  grunt.registerTask('test', ['env:test', 'mochaTest']);
-  grunt.registerTask('lint', ['jshint', 'csslint']);
+  grunt.registerTask('default', [
+    'env:dev',
+    'lint',
+    'browserify',
+    'concurrent:dev'
+  ]);
+
+  grunt.registerTask('debug', [
+    'env:dev',
+    'lint',
+    'browserify',
+    'concurrent:debug'
+  ]);
+
+  grunt.registerTask('test', [
+    'env:test',
+    'mochaTest'
+  ]);
+
+  grunt.registerTask('lint', [
+    'jshint',
+    'csslint'
+  ]);
 }

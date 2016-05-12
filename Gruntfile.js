@@ -93,7 +93,10 @@ module.exports = function(grunt) {
     // Linting Configurations
     jshint: {
       all: {
-        src: ['server.js', 'src/**/*.js']
+        src: ['server.js'],
+        options: {
+          esnext: true
+        }
       }
     },
     csslint: {

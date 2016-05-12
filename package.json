@@ -23,6 +23,8 @@
   "homepage": "https://github.com/JMHill/spotify-recommend-2#readme",
   "dependencies": {
     "express": "^4.12.4",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
     "unirest": "^0.4.2"
   },
   "devDependencies": {

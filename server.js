@@ -1,4 +1,5 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var port = process.env.PORT || 8080;
 
 var express = require('express');
 var app = express();
@@ -75,4 +76,4 @@ app.get('/search/:name', function(req, res) {
 	});
 });
 
-app.listen(8080);
+app.listen(port);

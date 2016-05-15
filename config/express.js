@@ -2,7 +2,7 @@ var express = require('express');
 
 module.exports = function() {
   var app = express();
-  var getFromApi = require('./src/services/getFromApi');
+  var getFromApi = require('../src/services/getFromApi');
 
   app.use(express.static('public'));
 

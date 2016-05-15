@@ -18,7 +18,12 @@ module.exports = function(grunt) {
         script: 'server.js',
         options: {
           ext:'js, html',
-          watch: ['server.js', 'config/**/*.js', 'app/**/*.js']
+          watch: [
+            'server.js',
+            'config/**/*.js',
+            'api/**/*.js',
+            'services/**/*.js'
+          ]
         }
       },
       debug: {
@@ -26,14 +31,24 @@ module.exports = function(grunt) {
         options: {
           nodeArgs: ['--debug'],
           ext: 'js, html',
-          watch: ['server.js', 'config/**/*.js', 'app/**/*.js']
+          watch: [
+            'server.js',
+            'config/**/*.js',
+            'api/**/*.js',
+            'services/**/*.js'
+          ]
         }
       }
     },
 
     watch: {
       js: {
-        files: ['server.js', 'src/**/*.js'],
+        files: [
+          'server.js',
+          'config/**/*.js',
+          'api/**/*.js',
+          'services/**/*.js'
+        ],
         tasks: ['jshint']
       },
       src: {

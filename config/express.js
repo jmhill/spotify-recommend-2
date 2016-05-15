@@ -74,4 +74,6 @@ module.exports = function() {
   		res.sendStatus(404);
   	});
   });
+
+  return app;
 };

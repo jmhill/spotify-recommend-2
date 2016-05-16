@@ -5,5 +5,5 @@ import RelatedList from './components/RelatedList';
 
 ReactDOM.render(
   <RelatedList />,
-  document.getElementById('react-test')
+  document.getElementById('react-app')
 );

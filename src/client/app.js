@@ -1,15 +1,9 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-class Test extends React.Component {
-  render() {
-    return (
-      <p>Hello React</p>
-    );
-  }
-}
+import RelatedList from './components/RelatedList';
 
 ReactDOM.render(
-  <Test />,
-  document.getElementById('react-test')
+  <RelatedList />,
+  document.getElementById('react-app')
 );

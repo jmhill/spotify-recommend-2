@@ -19260,7 +19260,36 @@ module.exports = require('./lib/React');
 },{"./lib/React":27}],167:[function(require,module,exports){
 'use strict';
 
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _RelatedList = require('./components/RelatedList');
+
+var _RelatedList2 = _interopRequireDefault(_RelatedList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(_RelatedList2.default, null), document.getElementById('react-app'));
+
+},{"./components/RelatedList":171,"react":166,"react-dom":1}],168:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19268,32 +19297,339 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+var ArtistHeader = function (_React$Component) {
+  _inherits(ArtistHeader, _React$Component);
 
-var Test = function (_React$Component) {
-  _inherits(Test, _React$Component);
+  function ArtistHeader() {
+    _classCallCheck(this, ArtistHeader);
 
-  function Test() {
-    _classCallCheck(this, Test);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Test).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ArtistHeader).apply(this, arguments));
   }
 
-  _createClass(Test, [{
+  _createClass(ArtistHeader, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'p',
+      var artist = this.props.artist;
+      var thumbnailIndex = artist.images.length - 1;
+
+      return _react2.default.createElement(
+        'h1',
         null,
-        'Hello React'
+        _react2.default.createElement('img', { src: artist.images[thumbnailIndex].url }),
+        _react2.default.createElement(
+          'a',
+          { href: artist.uri },
+          artist.name
+        )
       );
     }
   }]);
 
-  return Test;
-}(React.Component);
+  return ArtistHeader;
+}(_react2.default.Component);
 
-ReactDOM.render(React.createElement(Test, null), document.getElementById('react-test'));
+exports.default = ArtistHeader;
 
-},{"react":166,"react-dom":1}]},{},[167]);
+},{"react":166}],169:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ArtistInfo = function (_React$Component) {
+  _inherits(ArtistInfo, _React$Component);
+
+  function ArtistInfo() {
+    _classCallCheck(this, ArtistInfo);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ArtistInfo).apply(this, arguments));
+  }
+
+  _createClass(ArtistInfo, [{
+    key: "render",
+    value: function render() {
+      var artist = this.props.artist;
+      var trackList = artist.tracks.map(function (track) {
+        return _react2.default.createElement(
+          "li",
+          null,
+          _react2.default.createElement(
+            "a",
+            { href: track.uri },
+            track.name
+          )
+        );
+      });
+      var thumbnailIndex = artist.images.length - 1;
+
+      return _react2.default.createElement(
+        "div",
+        { className: "pure-u-1 pure-u-md-1-2 pure-u-lg-1-2" },
+        _react2.default.createElement("img", { src: artist.images[thumbnailIndex].url }),
+        _react2.default.createElement(
+          "div",
+          { className: "artist" },
+          _react2.default.createElement(
+            "h2",
+            null,
+            _react2.default.createElement(
+              "a",
+              { href: artist.uri },
+              artist.name
+            )
+          ),
+          _react2.default.createElement(
+            "ul",
+            null,
+            trackList
+          )
+        )
+      );
+    }
+  }]);
+
+  return ArtistInfo;
+}(_react2.default.Component);
+
+exports.default = ArtistInfo;
+
+},{"react":166}],170:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ArtistInfo = require('./ArtistInfo');
+
+var _ArtistInfo2 = _interopRequireDefault(_ArtistInfo);
+
+var _ArtistHeader = require('./ArtistHeader');
+
+var _ArtistHeader2 = _interopRequireDefault(_ArtistHeader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ArtistSearchResult = function (_React$Component) {
+  _inherits(ArtistSearchResult, _React$Component);
+
+  function ArtistSearchResult() {
+    _classCallCheck(this, ArtistSearchResult);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ArtistSearchResult).apply(this, arguments));
+  }
+
+  _createClass(ArtistSearchResult, [{
+    key: 'render',
+    value: function render() {
+      if (this.props.searchData.length < 1) {
+        return _react2.default.createElement(
+          'p',
+          null,
+          'Type search in the box above'
+        );
+      }
+      var artist = this.props.searchData;
+      var relatedArtists = artist.related.map(function (relatedArtist) {
+        return _react2.default.createElement(_ArtistInfo2.default, {
+          artist: relatedArtist
+        });
+      });
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_ArtistHeader2.default, {
+          artist: artist
+        }),
+        _react2.default.createElement(
+          'div',
+          { className: 'pure-g main' },
+          relatedArtists
+        )
+      );
+    }
+  }]);
+
+  return ArtistSearchResult;
+}(_react2.default.Component);
+
+exports.default = ArtistSearchResult;
+
+},{"./ArtistHeader":168,"./ArtistInfo":169,"react":166}],171:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _RelatedSearchBox = require('./RelatedSearchBox');
+
+var _RelatedSearchBox2 = _interopRequireDefault(_RelatedSearchBox);
+
+var _ArtistSearchResult = require('./ArtistSearchResult');
+
+var _ArtistSearchResult2 = _interopRequireDefault(_ArtistSearchResult);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RelatedList = function (_React$Component) {
+  _inherits(RelatedList, _React$Component);
+
+  function RelatedList() {
+    _classCallCheck(this, RelatedList);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(RelatedList).call(this));
+
+    _this.state = {
+      searchData: []
+    };
+    return _this;
+  }
+
+  _createClass(RelatedList, [{
+    key: '_handleSearchSubmit',
+    value: function _handleSearchSubmit(text) {
+      $.ajax({
+        url: '/search/' + text,
+        dataType: 'json',
+        type: 'GET',
+        success: function (data) {
+          console.log(data);
+          this.setState({ searchData: data });
+        }.bind(this),
+        error: function (xhr, status, err) {
+          console.error(status, err.toString());
+        }.bind(this)
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_RelatedSearchBox2.default, {
+          onSearchSubmit: this._handleSearchSubmit.bind(this)
+        }),
+        _react2.default.createElement(_ArtistSearchResult2.default, {
+          searchData: this.state.searchData
+        })
+      );
+    }
+  }]);
+
+  return RelatedList;
+}(_react2.default.Component);
+
+exports.default = RelatedList;
+
+},{"./ArtistSearchResult":170,"./RelatedSearchBox":172,"react":166}],172:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RelatedSearchBox = function (_React$Component) {
+  _inherits(RelatedSearchBox, _React$Component);
+
+  function RelatedSearchBox() {
+    _classCallCheck(this, RelatedSearchBox);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(RelatedSearchBox).call(this));
+
+    _this.state = {
+      text: ''
+    };
+    return _this;
+  }
+
+  _createClass(RelatedSearchBox, [{
+    key: '_handleTextChange',
+    value: function _handleTextChange(e) {
+      this.setState({
+        text: e.target.value
+      });
+    }
+  }, {
+    key: '_handleSubmit',
+    value: function _handleSubmit(e) {
+      e.preventDefault();
+      var text = this.state.text.trim();
+      this.props.onSearchSubmit(text);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'form',
+          { className: 'pure-form', onSubmit: this._handleSubmit.bind(this) },
+          _react2.default.createElement('input', { type: 'text', onChange: this._handleTextChange.bind(this) }),
+          _react2.default.createElement('input', { type: 'submit', value: 'Find Related Artists', className: 'pure-button pure-button-primary' })
+        )
+      );
+    }
+  }]);
+
+  return RelatedSearchBox;
+}(_react2.default.Component);
+
+exports.default = RelatedSearchBox;
+
+},{"react":166}]},{},[167]);

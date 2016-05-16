@@ -19260,7 +19260,40 @@ module.exports = require('./lib/React');
 },{"./lib/React":27}],167:[function(require,module,exports){
 'use strict';
 
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _RelatedList = require('./components/RelatedList');
+
+var _RelatedList2 = _interopRequireDefault(_RelatedList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(_RelatedList2.default, null), document.getElementById('react-test'));
+
+},{"./components/RelatedList":168,"react":166,"react-dom":1}],168:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _RelatedSearchBox = require('./RelatedSearchBox');
+
+var _RelatedSearchBox2 = _interopRequireDefault(_RelatedSearchBox);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19268,32 +19301,84 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+var RelatedList = function (_React$Component) {
+  _inherits(RelatedList, _React$Component);
 
-var Test = function (_React$Component) {
-  _inherits(Test, _React$Component);
+  function RelatedList() {
+    _classCallCheck(this, RelatedList);
 
-  function Test() {
-    _classCallCheck(this, Test);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Test).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(RelatedList).apply(this, arguments));
   }
 
-  _createClass(Test, [{
+  _createClass(RelatedList, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'p',
+      return _react2.default.createElement(
+        'div',
         null,
-        'Hello React'
+        _react2.default.createElement(_RelatedSearchBox2.default, null)
       );
     }
   }]);
 
-  return Test;
-}(React.Component);
+  return RelatedList;
+}(_react2.default.Component);
 
-ReactDOM.render(React.createElement(Test, null), document.getElementById('react-test'));
+exports.default = RelatedList;
 
-},{"react":166,"react-dom":1}]},{},[167]);
+},{"./RelatedSearchBox":169,"react":166}],169:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RelatedSearchBox = function (_React$Component) {
+  _inherits(RelatedSearchBox, _React$Component);
+
+  function RelatedSearchBox() {
+    _classCallCheck(this, RelatedSearchBox);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(RelatedSearchBox).apply(this, arguments));
+  }
+
+  _createClass(RelatedSearchBox, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "form",
+          { className: "pure-form" },
+          _react2.default.createElement("input", { type: "text" }),
+          _react2.default.createElement(
+            "button",
+            { type: "button", className: "pure-button pure-button-primary" },
+            "Find Related Artists"
+          )
+        )
+      );
+    }
+  }]);
+
+  return RelatedSearchBox;
+}(_react2.default.Component);
+
+exports.default = RelatedSearchBox;
+
+},{"react":166}]},{},[167]);

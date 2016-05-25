@@ -1,8 +1,8 @@
-var getFromApi = require('./getFromApi');
+var spotifyApi = require('./spotify-api-query');
 
 module.exports = function(req, res) {
     // This is the initial search request based on user input
-    var searchReq = getFromApi('search', {
+    var searchReq = spotifyApi.get('search', {
     q: req.params.name,
     limit: 1,
     type: 'artist'
@@ -16,7 +16,7 @@ module.exports = function(req, res) {
     // We only want to execute the rest of the code if the search gives us a result
     if (artist) {
         // Spotify API call to get related artists
-        var relatedReq = getFromApi('artists/' + artist.id + '/related-artists');
+        var relatedReq = spotifyApi.get('artists/' + artist.id + '/related-artists');
         // Once we get the related artists, we can start looking up their tracks
         relatedReq.on('end', function(list) {
         artist.related = list.artists;
@@ -33,7 +33,7 @@ module.exports = function(req, res) {
         // We will look up each of the related artists' tracks here.
         artist.related.forEach(function(relatedArtist) {
             // Each related artist will require an API call
-            var topTracksReq = getFromApi(
+            var topTracksReq = spotifyApi.get(
             'artists/' + relatedArtist.id + '/top-tracks',
             { country: 'US' }
             );

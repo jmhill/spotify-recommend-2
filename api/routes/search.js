@@ -1,6 +1,5 @@
 var router = require('express').Router();
-var getFromApi = require('../services/getFromApi');
-var Spotify = require('../services/spotify-search');
+var Spotify = require('../services/spotify/spotify-search');
 
 router.get('/:name', Spotify);
 

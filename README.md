@@ -10,6 +10,7 @@ Intent is to create an online community app that integrates tightly with the Spo
 _Set-up_: After cloning repo and `npm install`, run `grunt` from within project directory to start server using development configuration. Note: grunt-cli must be installed globally via npm.
 
 _Workflow_:
+
 1. Issues and status of work-in-progress can be viewed at https://waffle.io/jmhill/spotify-recommend-2. 
 2. Issues are tagged with a label describing the type of work:
   - __feat__: new features and enhancements

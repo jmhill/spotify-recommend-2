@@ -22,7 +22,6 @@ module.exports = function(grunt) {
             'server.js',
             'config/**/*.js',
             'api/**/*.js',
-            'services/**/*.js'
           ]
         }
       },
@@ -35,7 +34,6 @@ module.exports = function(grunt) {
             'server.js',
             'config/**/*.js',
             'api/**/*.js',
-            'services/**/*.js'
           ]
         }
       }

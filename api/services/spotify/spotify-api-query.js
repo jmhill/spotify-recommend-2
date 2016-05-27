@@ -1,12 +1,9 @@
-var events = require('events');
 var unirest = require('unirest');
 
-exports.get = function (endpoint, args) {
-	var emitter = new events.EventEmitter();
+exports.get = function (endpoint, args, callback) {
 	unirest.get('https://api.spotify.com/v1/' + endpoint)
 		.qs(args)
 		.end(function(response){
-			emitter.emit('end', response.body);
+			callback(response.body);
 		});
-	return emitter;
 };

@@ -23,4 +23,4 @@ _Workflow_:
 
 ### Background
 
-This project started as a simple demo for a node.js course that was offered through Thinkful. The demo project created a simple search form that returned a list of related artists and their top tracks. This demonstration was composed of a simple handlebars template combined with JQuery for fetching data from the server and updating the template. As an initial step, we extract the client-side logic into react components and create a Spotify service that will expose several middleware functions usable by the express app for sending data back to the client.
+This project started as a simple demo for a node.js course that was offered through Thinkful. The demo project used a search form that returned a list of related artists and their top tracks. This demonstration was composed of a handlebars template combined with JQuery for fetching data from the server and updating the template. As an initial step, we extract the client-side logic into react components and create a Spotify service that will expose several middleware functions usable by the express app for sending data back to the client.
